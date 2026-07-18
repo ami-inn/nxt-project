@@ -50,8 +50,9 @@ const CompanionForm = () => {
         },
     })
 
-    const onSubmit = async () => {
+    const onSubmit = async (data) => {
         // handle submit
+        console.log(data)
     }
 
     return (
