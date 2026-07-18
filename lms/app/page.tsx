@@ -1,13 +1,14 @@
 import CompanionCard from '@/components/CompanionCard'
 import CompanionList from '@/components/CompanionList'
 import CtaSection from '@/components/CtaSection'
+import { recentSessions } from '@/constants'
 
 import React from 'react'
 
 const page = () => {
   return (
     <main>
-      <h1 className='text-2xl underline'>
+      <h1 className='text-2xl underline '>
         popular companions
 
       </h1>
@@ -48,7 +49,11 @@ const page = () => {
       </section>
 
       <section className='home-section'>
-        <CompanionList/>
+        <CompanionList
+        title='recent sessions'
+        companions={recentSessions}
+        classNames='w-2/3 max-lg:w-full'
+        />
         <CtaSection/>
       </section>
       
