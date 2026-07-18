@@ -8,7 +8,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import {cn} from "@/lib/utils";
+import {cn, getSubjectColor} from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -18,9 +18,7 @@ interface CompanionsListProps {
     classNames?: string;
 }
 
-const getSubjectColor = (data)=>{
-    return 'red'
-}
+
 
 const CompanionsList = ({ title, companions, classNames }: CompanionsListProps) => {
     return (
