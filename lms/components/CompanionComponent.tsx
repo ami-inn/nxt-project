@@ -1,5 +1,5 @@
 "use client";
-import { cn, getSubjectColor } from "@/lib/utils";
+import { cn, configureAssistant, getSubjectColor } from "@/lib/utils";
 import { vapi } from "@/lib/vapi.sdk";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
