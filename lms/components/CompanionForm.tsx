@@ -53,6 +53,7 @@ const CompanionForm = () => {
     const onSubmit = async (data) => {
         // handle submit
         console.log(data)
+        console.log(data)
     }
 
     return (
