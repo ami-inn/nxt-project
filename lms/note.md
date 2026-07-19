@@ -12,3 +12,5 @@ tech stack using for this project
 commands ad installation guide forthe project
 
 npx create-next-app@latest ./
+
+lottie files for the animation
