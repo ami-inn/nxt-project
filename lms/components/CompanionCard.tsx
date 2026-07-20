@@ -1,5 +1,6 @@
 "use client";
 
+import { addBookmark, removeBookmark } from "@/lib/actions/companion.action";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -26,9 +27,9 @@ const CompanionCard = ({
   const pathname = usePathname();
   const handleBookmark = async () => {
     if (bookmarked) {
-    //   await removeBookmark(id, pathname);
+      await removeBookmark(id, pathname);
     } else {
-    //   await addBookmark(id, pathname);
+      await addBookmark(id, pathname);
     }
   };
   return (
