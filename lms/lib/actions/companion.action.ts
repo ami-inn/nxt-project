@@ -123,6 +123,8 @@ export const newCompanionPermissions = async () => {
     const { userId, has } = await auth();
     const supabase = createSupabaseClient();
 
+
+
     let limit = 0;
 
     if(has({ plan: 'pro' })) {
@@ -159,6 +161,8 @@ export const addBookmark = async (companionId: string, path: string) => {
     user_id: userId,
   });
   if (error) {
+    console.log('errororororor',error)
+    console.log(error.message,'error message')
     throw new Error(error.message);
   }
   // Revalidate the path to force a re-render of the page
@@ -184,7 +188,7 @@ export const removeBookmark = async (companionId: string, path: string) => {
 };
 
 // It's almost the same as getUserCompanions, but it's for the bookmarked companions
-export const getBookmarkedCompanions = async (userId: string) => {
+export const getBookmarkedCompanions = async (userId: string): Promise<Companion[]> => {
   const supabase = createSupabaseClient();
   const { data, error } = await supabase
     .from("bookmarks")
@@ -194,5 +198,5 @@ export const getBookmarkedCompanions = async (userId: string) => {
     throw new Error(error.message);
   }
   // We don't need the bookmarks data, so we return only the companions
-  return data.map(({ companions }) => companions);
+  return (data ?? []).map(({ companions }) => companions as Companion);
 };

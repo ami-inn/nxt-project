@@ -3,7 +3,7 @@
 import { addBookmark, removeBookmark } from "@/lib/actions/companion.action";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface CompanionCardProps {
   id: string;
@@ -12,7 +12,7 @@ interface CompanionCardProps {
   subject: string;
   duration: number;
   color: string;
-  bookmarked: boolean;
+  bookmarked?: boolean;
 }
 
 const CompanionCard = ({
@@ -22,8 +22,9 @@ const CompanionCard = ({
   subject,
   duration,
   color,
-  bookmarked,
+  bookmarked = false,
 }: CompanionCardProps) => {
+  const router = useRouter();
   const pathname = usePathname();
   const handleBookmark = async () => {
     if (bookmarked) {
@@ -31,6 +32,7 @@ const CompanionCard = ({
     } else {
       await addBookmark(id, pathname);
     }
+    router.refresh();
   };
   return (
     <article className="companion-card" style={{ backgroundColor: color }}>

@@ -1,40 +1,44 @@
 import CompanionCard from '@/components/CompanionCard';
 import SearchInput from '@/components/SearchInput';
 import SubjectFilter from '@/components/SubjectFilter';
-import { getAllCompanions } from '@/lib/actions/companion.action';
+import { currentUser } from '@clerk/nextjs/server';
+import { getAllCompanions, getBookmarkedCompanions } from '@/lib/actions/companion.action';
 import { getSubjectColor } from '@/lib/utils';
 import React from 'react'
 
 const CompanionsLibrary = async ({searchParams}:SearchParams) => {
-  
- const filters = await searchParams;
-    const subject = filters.subject ? filters.subject : '';
-    const topic = filters.topic ? filters.topic : '';
+  const user = await currentUser();
+  const bookmarkedCompanions: Companion[] = user ? await getBookmarkedCompanions(user.id) : [];
+  const bookmarkedIds = new Set(
+    bookmarkedCompanions.map((companion) => companion.id)
+  );
 
-    const companions = await getAllCompanions({ subject, topic });
+  const filters = await searchParams;
+  const subject = filters.subject ? filters.subject : '';
+  const topic = filters.topic ? filters.topic : '';
 
-    console.log(companions)
+  const companions = await getAllCompanions({ subject, topic });
 
-  
   return (
-         <main>
-            <section className="flex justify-between gap-4 max-sm:flex-col">
-                <h1>Companion Library</h1>
-                <div className="flex gap-4">
-                    <SearchInput />
-                    <SubjectFilter />
-                </div>
-            </section>
-            <section className="companions-grid">
-                {companions.map((companion) => (
-                    <CompanionCard
-                        key={companion.id}
-                        {...companion}
-                        color={getSubjectColor(companion.subject)}
-                    />
-                ))}
-            </section>
-        </main>
+    <main>
+      <section className="flex justify-between gap-4 max-sm:flex-col">
+        <h1>Companion Library</h1>
+        <div className="flex gap-4">
+          <SearchInput />
+          <SubjectFilter />
+        </div>
+      </section>
+      <section className="companions-grid">
+        {companions.map((companion) => (
+          <CompanionCard
+            key={companion.id}
+            {...companion}
+            color={getSubjectColor(companion.subject)}
+            bookmarked={bookmarkedIds.has(companion.id)}
+          />
+        ))}
+      </section>
+    </main>
   )
 }
 
