@@ -32,11 +32,11 @@ const MobileSidebar = () => {
 
             <SidebarComponent
                 width={270}
-                ref={(Sidebar) => sidebar = Sidebar}
+                ref={(Sidebar) => sidebar = Sidebar} // get a reference to the sidebar component and assign it to the sidebar variable for later use
                 created={() => sidebar.hide()}
-                closeOnDocumentClick={true}
-                showBackdrop={true}
-                type="over"
+                closeOnDocumentClick={true} // Close the sidebar when clicking outside of it
+                showBackdrop={true} // Show a backdrop when the sidebar is open
+                type="over" // to show the sidebar over the main content
             >
                 <NavItems handleClick={toggleSidebar} />
             </SidebarComponent>
