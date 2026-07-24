@@ -4,6 +4,25 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [tailwindcss(), reactRouter()],
+  ssr:{
+    noExternal:['/@syncfusion/']
+  },
+  server: {
+    host: "0.0.0.0",
+    port: 5173,
+    strictPort: true,
+    hmr: {
+      protocol: "ws",
+      host: "localhost",
+      port: 5173,
+      clientPort: 5173,
+    },
+    watch: {
+      // Improves HMR reliability on some macOS/Desktop synced folders.
+      usePolling: true,
+      interval: 100,
+    },
+  },
   resolve: {
     tsconfigPaths: true,
   },

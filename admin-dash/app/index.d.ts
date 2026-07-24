@@ -156,3 +156,5 @@ declare interface TripFormData {
   duration: number;
   groupType: string;
 }
+
+declare module "@syncfusion/ej2-base/dist/es6/ej2-base.es5.js";
