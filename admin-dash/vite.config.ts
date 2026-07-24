@@ -4,8 +4,8 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [tailwindcss(), reactRouter()],
-  ssr:{
-    noExternal:['/@syncfusion/']
+  ssr: {
+    noExternal: [/^@syncfusion\//],
   },
   server: {
     host: "0.0.0.0",
