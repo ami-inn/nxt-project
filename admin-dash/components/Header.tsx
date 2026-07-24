@@ -12,7 +12,7 @@ interface Props {
 }
 
 const Header = ({ title, description, ctaText, ctaUrl }: Props) => {
-    const location = useLocation();
+    const location = useLocation(); // use useLocation hook to get the current location object, which contains information about the current URL and its state
 
     return (
         <header className="header">

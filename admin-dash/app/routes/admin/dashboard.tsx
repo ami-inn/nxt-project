@@ -1,11 +1,15 @@
 import React from 'react'
+import Header from '../../../components/Header'
 
 const Dashboard = () => {
+    const user = {name: 'John Doe'}; // Replace with actual user data from loader or context
   return (
-    <div className='text-blue-500'>
-      this is dashboard  view
-      
-    </div>
+    <main className='dashboard wrapper'>
+        <Header
+                title={`Welcome ${user?.name ?? 'Guest'} 👋`}
+                description="Track activity, trends and popular destinations in real time"
+            />
+    </main>
   )
 }
 
