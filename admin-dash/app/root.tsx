@@ -25,7 +25,7 @@ export const links: Route.LinksFunction = () => [
 
 import { registerLicense } from "@syncfusion/ej2-base/dist/es6/ej2-base.es5.js";
 import { AppwriteProvider } from "@appwrite.io/react";
-import { appwriteConfig } from "../client";
+import { appwriteConfig } from "./appwrite/client";
 
 registerLicense(import.meta.env.VITE_SYNCFUSION_LICENSE_KEY);
 

@@ -1,5 +1,5 @@
 
-import { Account, Client, Databases, Storage } from "appwrite";
+import { Account, Client, Storage, TablesDB } from "appwrite";
 
 const appwriteEndpoint =
   (import.meta.env.VITE_APPWRITE_ENDPOINT_URL as string | undefined) ??
@@ -23,6 +23,6 @@ export const appwriteClient = new Client()
   .setProject(appwriteConfig.projectId);
 
 export const account = new Account(appwriteClient);
-export const databases = new Databases(appwriteClient);
 export const storage = new Storage(appwriteClient);
+export const tablesDB = new TablesDB(appwriteClient);
 export const client = appwriteClient;
