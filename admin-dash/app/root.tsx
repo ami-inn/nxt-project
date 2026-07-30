@@ -23,8 +23,9 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
-
 import { registerLicense } from "@syncfusion/ej2-base/dist/es6/ej2-base.es5.js";
+import { AppwriteProvider } from "@appwrite.io/react";
+import { appwriteConfig } from "../client";
 
 registerLicense(import.meta.env.VITE_SYNCFUSION_LICENSE_KEY);
 
@@ -38,7 +39,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <AppwriteProvider
+          endpoint={appwriteConfig.endpoint}
+          projectId={appwriteConfig.projectId}
+        >
+          {children}
+        </AppwriteProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
