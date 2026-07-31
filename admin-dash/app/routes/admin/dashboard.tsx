@@ -2,6 +2,8 @@ import React from "react";
 import Header from "../../../components/Header";
 import StatsCard from "../../../components/StatsCard";
 import TripCard from "../../../components/TripCard";
+import { getUser } from "~/appwrite/auth";
+import type {Route} from './+types/dashboard' 
 
 const allTrips = [
   {
@@ -46,7 +48,7 @@ const allTrips = [
   },
 ];
 
-const user = { name: "John Doe" }; // Replace with actual user data from loader or context
+
 
 const dashboardStats = {
   totalUsers: 1200,
@@ -55,7 +57,10 @@ const dashboardStats = {
   tripsCreated: { currentMonth: 20, previousMonth: 15 },
 };
 
-const Dashboard = () => {
+export const clientLoader = async () => await getUser();
+
+const Dashboard = ({loaderData}: Route.ComponentProps) => {
+  const user = loaderData as User | null;
   return (
     <main className="dashboard wrapper">
       <Header
